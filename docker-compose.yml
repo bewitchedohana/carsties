@@ -1,13 +1,24 @@
 services:
-  auction-database:
+  postgres:
     image: postgres
-    container_name: auction-database
+    container_name: postgres
     environment:
       - POSTGRES_PASSWORD=postgrespw
     ports:
       - 5433:5432
     volumes:
       - pgdata:/var/lib/postgresql/data
+  mongo:
+    image: mongo
+    container_name: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=mongopw
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodata:/data/db
 
 volumes:
   pgdata:
+  mongodata:
